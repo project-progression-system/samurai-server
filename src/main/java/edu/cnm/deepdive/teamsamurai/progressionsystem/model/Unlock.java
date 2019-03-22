@@ -7,49 +7,49 @@ import org.springframework.lang.NonNull;
 @Entity
 public class Unlock {
 
-  @Column
-  private long unlock_id;
+  @Column(name = "unlock_id")
+  private long unlockId;
 
   @NonNull
-  @Column(length = 1024, nullable = false, unique = true)
-  private String unlock_name;
+  @Column(name = "unlock_name", length = 1024, nullable = false, unique = true)
+  private String unlockName;
 
-  @Column
-  private long level_unlocked;
+  @Column(name = "level_unlocked")
+  private long levelUnlocked;
 
   @NonNull
-  @Column(length = 1024, nullable = false, unique = true)
-  private String assignment_name;
+  @Column(name = "assignment_name", length = 1024, nullable = false, unique = true)
+  private String assignmentName;
 
-  public long getUnlock_id() {
-    return unlock_id;
+  public long getUnlockId() {
+    return unlockId;
   }
 
-  public void setUnlock_id(long unlock_id) {
-    this.unlock_id = unlock_id;
+  public void setUnlockId(long unlockId) {
+    this.unlockId = unlockId;
   }
 
-  public String getUnlock_name() {
-    return unlock_name;
+  public String getUnlockName() {
+    return unlockName;
   }
 
-  public void setUnlock_name(String unlock_name) {
-    this.unlock_name = unlock_name;
+  public void setUnlockName(String unlockName) {
+    this.unlockName = unlockName;
   }
 
-  public long getLevel_unlocked() {
-    return level_unlocked;
+  public long getLevelUnlocked() {
+    return levelUnlocked;
   }
 
-  public void setLevel_unlocked(long level_unlocked) {
-    this.level_unlocked = level_unlocked;
+  public void setLevelUnlocked(long levelUnlocked) {
+    this.levelUnlocked = levelUnlocked;
   }
 
-  public String getAssignment_name() {
-    return assignment_name;
+  public String getAssignmentName() {
+    return assignmentName;
   }
 
-  public void setAssignment_name(String assignment_name) {
-    this.assignment_name = assignment_name;
+  public void setAssignmentName(String assignmentName) {
+    this.assignmentName = assignmentName;
   }
 }

@@ -19,16 +19,16 @@ public class User {
   private UUID userId;
 
   @NonNull
-  @Column(length = 1024, nullable = false, unique = true)
-  private String user_name;
+  @Column(name = "user_name", length = 1024, nullable = false, unique = true)
+  private String userName;
 
   @NonNull
   @Column(length = 1024, nullable = false, unique = true)
   private String access;
 
   @NonNull
-  @Column(length = 1024, nullable = false, unique = true)
-  private String unlockable_name;//avatars they can unlock.
+  @Column(name = "unlock_name", length = 1024, nullable = false, unique = true)
+  private String unlockableName;//avatars they can unlock.
 
   @Column
   private long level;
@@ -41,12 +41,12 @@ public class User {
     this.userId = userId;
   }
 
-  public String getUser_name() {
-    return user_name;
+  public String getUserName() {
+    return userName;
   }
 
-  public void setUser_name(String user_name) {
-    this.user_name = user_name;
+  public void setUserName(String userName) {
+    this.userName = userName;
   }
 
   public String getAccess() {
@@ -57,12 +57,12 @@ public class User {
     this.access = access;
   }
 
-  public String getUnlockable_name() {
-    return unlockable_name;
+  public String getUnlockableName() {
+    return unlockableName;
   }
 
-  public void setUnlockable_name(String unlockable_name) {
-    this.unlockable_name = unlockable_name;
+  public void setUnlockableName(String unlockableName) {
+    this.unlockableName = unlockableName;
   }
 
   public long getLevel() {
@@ -72,4 +72,5 @@ public class User {
   public void setLevel(long level) {
     this.level = level;
   }
+
 }
