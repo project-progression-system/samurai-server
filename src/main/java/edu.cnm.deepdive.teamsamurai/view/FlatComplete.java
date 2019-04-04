@@ -1,5 +1,5 @@
 /*
- *  Copyright 2019 Nicholas Bennett & Deep Dive Coding
+ *  Copyright 2019 Lance Zotigh, Alex Rauenzahn, Thomas Herrera & Deep Dive Coding
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -15,42 +15,38 @@
  */
 package edu.cnm.deepdive.teamsamurai.view;
 
+import edu.cnm.deepdive.teamsamurai.model.entity.User;
 import java.net.URI;
 import java.util.Date;
 import java.util.UUID;
 
-/**
- * Declares the getters (and thus the JSON properties) of a quote for serialization, excluding
- * references to other objects that could result in stack or buffer overflow on serialization.
- */
-public interface FlatPoint {
-
+public interface FlatComplete {
   /**
-   * Returns the universally unique ID (UUID) of a quote resource.
+   * Returns the universally unique ID (UUID) of a source resource.
    *
    * @return quote UUID.
    */
   UUID getId();
 
   /**
-   * Returns the date-time stamp recorded when a quote resource is first written to the database.
+   * Returns the date-time stamp recorded when a source resource is first written to the database.
    *
    * @return creation timestamp.
    */
   Date getCreated();
 
   /**
-   * Returns the text of the quote.
    *
-   * @return quote text.
+   *
+   * @return points
    */
-  String getText();
+  int getPoints();
+  
 
   /**
-   * Returns a URL referencing the quote resource.
+   * Returns a URL referencing the source resource.
    *
-   * @return quote URL.
+   * @return source URL.
    */
   URI getHref();
-
 }

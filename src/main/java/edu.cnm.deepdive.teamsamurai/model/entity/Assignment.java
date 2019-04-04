@@ -1,5 +1,5 @@
 /*
- *  Copyright 2019 Nicholas Bennett & Deep Dive Coding
+ *  Copyright 2019 Lance Zotigh, Alex Rauenzahn, Thomas Herrera & Deep Dive Coding
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -18,49 +18,46 @@ package edu.cnm.deepdive.teamsamurai.model.entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import edu.cnm.deepdive.teamsamurai.view.FlatAssigment;
-import edu.cnm.deepdive.teamsamurai.view.FlatPoint;
+import edu.cnm.deepdive.teamsamurai.view.FlatUser;
 import java.net.URI;
 import java.util.Date;
-import java.util.LinkedHashSet;
 import java.util.Objects;
-import java.util.Set;
 import java.util.UUID;
 import javax.annotation.PostConstruct;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OrderBy;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityLinks;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
 /**
- * Defines a database entity and REST resource representing the text of a quote, and its
- * relationships to zero or more {@link Assigment} resources.
+ * Defines a database entity and REST resource representing the a quote source, and its
+ * relationships to zero or more {@link Assignment} resources.
  */
 @Entity
 @Component
 @JsonIgnoreProperties(
-    value = {"created", "sources", "href"}, allowGetters = true, ignoreUnknown = true)
-public class Point implements FlatPoint {
+    value = {"created", "users", "href"}, allowGetters = true, ignoreUnknown = true)
+public class Assignment implements FlatAssigment {
 
   private static EntityLinks entityLinks;
 
   @Id
   @GeneratedValue(generator = "uuid2")
   @GenericGenerator(name = "uuid2", strategy = "uuid2")
-  @Column(name = "quote_id", columnDefinition = "CHAR(16) FOR BIT DATA",
+  @Column(name = "assignment_id", columnDefinition = "CHAR(16) FOR BIT DATA",
       nullable = false, updatable = false)
   private UUID id;
 
@@ -71,16 +68,17 @@ public class Point implements FlatPoint {
   private Date created;
 
   @NonNull
-  @Column(length = 4096, nullable = false, unique = true)
-  private String text;
+  @Column(length = 1024, nullable = false, unique = true)
+  private String name;
 
-  @JsonSerialize(contentAs = FlatAssigment.class)
-  @ManyToMany(fetch = FetchType.LAZY,
-      cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-  @JoinTable(joinColumns = @JoinColumn(name = "assigment_id"),
-      inverseJoinColumns = @JoinColumn(name = "source_id"))
-  @OrderBy("name ASC")
-  private Set<Assigment> sources = new LinkedHashSet<>();
+  @Column
+  private int value;
+
+  @JsonSerialize(as = FlatUser.class)
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "teacher_id", updatable = false, nullable = false)
+  @OnDelete(action = OnDeleteAction.CASCADE)
+  private User teacher;
 
   @Override
   public UUID getId() {
@@ -93,31 +91,39 @@ public class Point implements FlatPoint {
   }
 
   @Override
-  public String getText() {
-    return text;
+  public String getName() {
+    return name;
   }
 
   /**
-   * Sets the text content of this <code>Quote</code> instance.
+   * Sets the name of this <code>AssigmentName</code> instance.
    *
-   * @param text actual quote.
+   * @param name quote source name.
    */
-  public void setText(String text) {
-    this.text = text;
+  public void setName(String name) {
+    this.name = name;
   }
 
-  /**
-   * Returns a {@link Set} of the {@link Assigment} instances related to this <code>Quote</code>.
-   *
-   * @return {@link Assigment} set.
-   */
-  public Set<Assigment> getSources() {
-    return sources;
+  @Override
+  public int getValue() {
+    return value;
+  }
+
+  public void setValue(int value) {
+    this.value = value;
+  }
+
+  public User getTeacher() {
+    return teacher;
+  }
+
+  public void setTeacher(User teacher) {
+    this.teacher = teacher;
   }
 
   @Override
   public URI getHref() {
-    return entityLinks.linkForSingleResource(Point.class, id).toUri();
+    return entityLinks.linkForSingleResource(Assignment.class, id).toUri();
   }
 
   @PostConstruct
@@ -127,27 +133,27 @@ public class Point implements FlatPoint {
 
   @Autowired
   private void setEntityLinks(EntityLinks entityLinks) {
-    Point.entityLinks = entityLinks;
+    Assignment.entityLinks = entityLinks;
   }
 
   /**
-   * Computes and returns a hash value computed from {@link #getText()}, after first converting to
+   * Computes and returns a hash value computed from {@link #getName()}, after first converting to
    * uppercase.
    *
    * @return hash value.
    */
   @Override
   public int hashCode() {
-    return (text != null) ? text.toUpperCase().hashCode() : 0;
+    return (name != null) ? name.toUpperCase().hashCode() : 0;
   }
 
   /**
    * Implements an equality test based on a case-insensitive comparison of the text returned by
-   * {@link #getText()}. If the other object is <code>null</code>, or if one (but not both) of the
-   * instances' {@link #getText()} values is <code>null</code>, then <code>false</code> is returned;
-   * otherwise, the text values are compared using {@link String#equalsIgnoreCase(String)}.
+   * {@link #getName()}. If the other object is <code>null</code>, or if one (but not both) of the
+   * instances' {@link #getName()} values is <code>null</code>, then <code>false</code> is returned;
+   * otherwise, the name values are compared using {@link String#equalsIgnoreCase(String)}.
    *
-   * @param obj object to which this instance will compare itself, based on {@link #getText()}.
+   * @param obj object to which this instance will compare itself, based on {@link #getName()}.
    * @return <code>true</code> if the values are equal, ignoring case; <code>false</code> otherwise.
    */
   @Override
@@ -155,8 +161,8 @@ public class Point implements FlatPoint {
     if (obj == null || obj.getClass() != getClass()) {
       return false;
     }
-    Point other = (Point) obj;
-    return Objects.equals(text, other.text) || (text != null && text.equalsIgnoreCase(other.text));
+    Assignment other = (Assignment) obj;
+    return Objects.equals(name, other.name) || (name != null && name.equalsIgnoreCase(other.name));
   }
 
 }

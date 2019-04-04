@@ -15,15 +15,12 @@
  */
 package edu.cnm.deepdive.teamsamurai.model.dao;
 
-import edu.cnm.deepdive.teamsamurai.model.entity.User;
-import java.util.List;
-import java.util.Optional;
+import edu.cnm.deepdive.teamsamurai.model.entity.Complete;
 import java.util.UUID;
 import org.springframework.data.repository.CrudRepository;
 
-public interface UserRepository extends CrudRepository<User, UUID> {
+public interface CompleteRepository extends CrudRepository<Complete, UUID> {
 
-  List<User> findAllByOrderByNameAsc();
+  Iterable<Complete> findAllByStudentOrderByCreatedDesc(String student);
 
-  Optional<User> findFirstByIdAndType(UUID id, User.Type type);
 }
