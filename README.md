@@ -1,1 +1,1 @@
-[ERD for Back-end](https://www.lucidchart.com/documents/edit/7ae0d64d-a32a-4d08-a9ce-93d71929256e/0)
+[ERD for Back-end](https://github.com/project-progression-system/samurai-server/blob/master/Back-end%20progress(1).pdf)
