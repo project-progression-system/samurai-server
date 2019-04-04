@@ -4,7 +4,7 @@
 //import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 //import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 //import edu.cnm.deepdive.teamsamurai.view.FlatAssignmentOrig;
-//import edu.cnm.deepdive.teamsamurai.view.FlatAssigmentName;
+//import edu.cnm.deepdive.teamsamurai.view.FlatAssigment;
 //import java.net.URI;
 //import java.util.Date;
 //import java.util.LinkedHashSet;
@@ -52,7 +52,7 @@
 //  @Column(nullable = false, updatable = false)
 //  private Date created;
 //
-//  @JsonSerialize(contentAs = FlatAssigmentName.class)
+//  @JsonSerialize(contentAs = FlatAssigment.class)
 //  @ManyToMany(fetch = FetchType.LAZY,
 //      cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
 //  @JoinTable(joinColumns = @JoinColumn(name = "_id"), //TODO relace with proper id
