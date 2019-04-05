@@ -45,6 +45,12 @@ public interface FlatAssigment {
    */
   String getName();
 
+
+  /**
+   * Returns the assignment value
+   *
+   * @return assignment value
+   */
   int getValue();
 
 
