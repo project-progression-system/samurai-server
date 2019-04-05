@@ -43,7 +43,7 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
 /**
- * Defines a database entity and REST resource representing the a quote source, and its
+ * Defines a database entity and REST resource representing the a assignment complete user, and its
  * relationships to zero or more {@link Assignment} resources.
  */
 @Entity
@@ -104,19 +104,31 @@ public class Assignment implements FlatAssigment {
     this.name = name;
   }
 
+  /**
+   * @return
+   */
   @Override
   public int getValue() {
     return value;
   }
 
+  /**
+   * @param value
+   */
   public void setValue(int value) {
     this.value = value;
   }
 
+  /**
+   * @return
+   */
   public User getTeacher() {
     return teacher;
   }
 
+  /**
+   * @param teacher
+   */
   public void setTeacher(User teacher) {
     this.teacher = teacher;
   }

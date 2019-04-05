@@ -21,9 +21,22 @@ import java.util.Optional;
 import java.util.UUID;
 import org.springframework.data.repository.CrudRepository;
 
+/**
+ * Declares database operations that can be performed on {@link User} entity instances.
+ */
 public interface UserRepository extends CrudRepository<User, UUID> {
 
+  /**
+   * Selects and returns all {@link User} instances, sorted in alphabetical order.
+   *
+   * @return {@link List} sequence of {@link User} instances.
+   */
   List<User> findAllByOrderByNameAsc();
 
+  /**
+   * Selects and returns all {@link User} instances, sorted by id creation.
+   *
+   * @return {@link Optional} sequence of {@link User} instances.
+   */
   Optional<User> findFirstByIdAndType(UUID id, User.Type type);
 }

@@ -20,28 +20,28 @@ import java.util.Date;
 import java.util.UUID;
 
 /**
- * Declares the getters (and thus the JSON properties) of a source for serialization, excluding
+ * Declares the getters (as well as JSON properties) of a source for serialization, excluding
  * references to other objects that could result in stack or buffer overflow on serialization.
  */
 public interface FlatAssigment {
   /**
-   * Returns the universally unique ID (UUID) of a source resource.
+   * Returns the universally unique ID (UUID) of a assignment resource.
    *
-   * @return quote UUID.
+   * @return complete UUID.
    */
   UUID getId();
 
   /**
-   * Returns the date-time stamp recorded when a source resource is first written to the database.
+   * Returns the date-time stamp recorded when a assignment resource is first written to the database.
    *
    * @return creation timestamp.
    */
   Date getCreated();
 
   /**
-   * Returns the name of the source.
+   * Returns the name of the assignment.
    *
-   * @return source name.
+   * @return assignment name.
    */
   String getName();
 
@@ -49,9 +49,9 @@ public interface FlatAssigment {
 
 
   /**
-   * Returns a URL referencing the source resource.
+   * Returns a URL referencing the assignment resource.
    *
-   * @return source URL.
+   * @return assignment URL.
    */
   URI getHref();
 }

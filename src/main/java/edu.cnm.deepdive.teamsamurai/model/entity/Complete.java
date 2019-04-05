@@ -33,6 +33,10 @@ import org.springframework.hateoas.EntityLinks;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
+/**
+ * Defines a database entity and REST resource representing the a assignment complete user, and its
+ * relationships to zero or more {@link Complete} resources.
+ */
 @Entity
 @Component
 public class Complete implements FlatComplete {
@@ -64,57 +68,90 @@ public class Complete implements FlatComplete {
   private User user;
 
   @ManyToOne
-  @JoinColumn(name = "assignment_id")
+  @JoinColumn(name = "assignment_id", insertable = false, updatable = false)
   private Assignment assignment;
 
+  /**
+   * @return
+   */
   public static EntityLinks getEntityLinks() {
     return entityLinks;
   }
 
+  /**
+   * @param entityLinks
+   */
   public static void setEntityLinks(EntityLinks entityLinks) {
     Complete.entityLinks = entityLinks;
   }
 
+  @Override
   public UUID getId() {
     return id;
   }
 
+  @Override
   public Date getCreated() {
     return created;
   }
 
+  /**
+   * @param created
+   */
   public void setCreated(Date created) {
     this.created = created;
   }
 
+  /**
+   * @return
+   */
   public String getStudent() {
     return student;
   }
 
+  /**
+   * @param student
+   */
   public void setStudent(String student) {
     this.student = student;
   }
 
+  @Override
   public int getPoints() {
     return points;
   }
 
+  /**
+   * @param points
+   */
   public void setPoints(int points) {
     this.points = points;
   }
 
+  /**
+   * @return
+   */
   public User getUser() {
     return user;
   }
 
+  /**
+   * @param user
+   */
   public void setUser(User user) {
     this.user = user;
   }
 
+  /**
+   * @return
+   */
   public Assignment getAssignment() {
     return assignment;
   }
 
+  /**
+   * @param assignment
+   */
   public void setAssignment(Assignment assignment) {
     this.assignment = assignment;
   }

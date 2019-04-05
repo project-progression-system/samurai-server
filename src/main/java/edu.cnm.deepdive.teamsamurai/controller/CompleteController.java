@@ -49,10 +49,10 @@ public class CompleteController {
   private AssigmentRepository assignmentRepository;
 
   /**
-   * Initializes this instance, injecting an instance of {@link CompleteRepository}
+   * Initializes this instance, injecting an instance of {@link CompleteRepository} as well as {@link AssigmentRepository}
    *
-   * @param completeRepository repository used for operations on {@link Assignment} entity instances.
-   * @param assigmentRepository
+   * @param completeRepository repository used for operations on {@link Complete} entity instances.
+   * @param assignmentRepository repository used for operations on {@link Assignment} entity instances.
    */
   @Autowired
   public CompleteController(CompleteRepository completeRepository,
@@ -72,12 +72,12 @@ public class CompleteController {
   }
 
   /**
-   * Adds the provided {@link Assignment} resource to the database and returns the completed resource,
+   * Adds the provided {@link Complete} resource to the database and returns the completed resource,
    * including timestamp &amp; ID. The provided resource is only required to contain a
    * <code>name</code> property, with a non-<code>null</code> value.
    *
-   * @param assignment partial {@link Assignment} resource.
-   * @return completed {@link Assignment} resource.
+   * @param complete partial {@link Complete} resource.
+   * @return completed {@link Complete} resource.
    */
   @PostMapping(
       consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -88,12 +88,12 @@ public class CompleteController {
   }
 
   /**
-   * Associates the {@link Source} referenced in the path with the {@link Quote}, also referenced by
+   * Associates the {@link Assignment} referenced in the path with the {@link Complete}, also referenced by
    * a path parameter.
    *
-   * @param quoteId {@link UUID} of {@link Quote} resource.
-   * @param sourceId {@link UUID} of {@link Source} to be associated with referenced {@link Quote}.
-   * @return updated {@link Quote} resource.
+   * @param completeId {@link UUID} of {@link Complete} resource.
+   * @param assignmentId {@link UUID} of {@link Assignment} to be associated with referenced {@link Complete}.
+   * @return updated {@link Complete} resource.
    */
   @PutMapping(value = "{completeId}/sources/{assignmentId}", produces = MediaType.APPLICATION_JSON_VALUE)
   public Complete attach(@PathVariable("completeId") UUID completeId, @PathVariable("assignmentId") UUID assignmentId) {

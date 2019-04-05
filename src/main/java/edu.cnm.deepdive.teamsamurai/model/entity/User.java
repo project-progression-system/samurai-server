@@ -41,6 +41,11 @@ import org.springframework.hateoas.EntityLinks;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
+
+/**
+ * Defines a database entity and REST resource representing the a assignment complete user, and its
+ * relationships to zero or more {@link User} resources.
+ */
 @Component
 @Entity(name = "user_info")
 public class User implements FlatUser {
@@ -78,14 +83,12 @@ public class User implements FlatUser {
   @OrderBy("created DESC")
   private List<Assignment> assignments = new LinkedList<>();
 
+  @Override
   public Type getType() {
     return type;
   }
 
-  public void setType(Type type) {
-    this.type = type;
-  }
-
+  @Override
   public UUID getId() {
     return id;
   }
@@ -95,34 +98,62 @@ public class User implements FlatUser {
     return created;
   }
 
+  /**
+   *
+   *
+   * @return
+   */
   public String getSubject() {
     return subject;
   }
 
+  /**
+   *
+   *
+   * @param subject
+   */
   public void setSubject(String subject) {
     this.subject = subject;
   }
 
+  @Override
   public String getName() {
     return name;
   }
 
+  /**
+   *
+   *
+   * @param name
+   */
   public void setName(String name) {
     this.name = name;
   }
 
+  @Override
   public int getLevel() {
     return level;
   }
 
+  /**
+   * sets the level of the student
+   *
+   * @param level int will return a int value representing a level
+   */
   public void setLevel(int level) {
     this.level = level;
   }
 
+  /**
+   * gets a list of assignments
+   *
+   * @return assigment
+   */
   public List<Assignment> getAssignments() {
     return assignments;
   }
 
+  @Override
   public URI getHref(){
     return entityLinks.linkForSingleResource(User.class, id).toUri();
   }
@@ -137,6 +168,9 @@ public class User implements FlatUser {
     User.entityLinks = entityLinks;
   }
 
+  /**
+   * creates an enum for teacher and student
+   */
   public enum Type {
     STUDENT, TEACHER;
   }

@@ -63,11 +63,6 @@ public class AssigmentController {
     this.userRepository = userRepository;
   }
 
-
-
-
-
-
   /**
    * Returns a sequence of {@link Assignment} resources, containing the specified text.
    *
@@ -135,10 +130,6 @@ public class AssigmentController {
     Assignment assignment = get(assignmentId);
     assigmentRepository.delete(assignment);//TODO Implement security on this
   }
-
-
-
-
 
   /**
    * Maps (via annotation) a {@link NoSuchElementException} to a response status code of {@link

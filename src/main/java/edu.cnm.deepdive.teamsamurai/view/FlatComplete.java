@@ -20,33 +20,37 @@ import java.net.URI;
 import java.util.Date;
 import java.util.UUID;
 
+/**
+ * Declares the getters (as well as JSON properties) of a source for serialization, excluding
+ * references to other objects that could result in stack or buffer overflow on serialization.
+ */
 public interface FlatComplete {
   /**
-   * Returns the universally unique ID (UUID) of a source resource.
+   * Returns the universally unique ID (UUID) of a complete resource.
    *
-   * @return quote UUID.
+   * @return assignment UUID.
    */
   UUID getId();
 
   /**
-   * Returns the date-time stamp recorded when a source resource is first written to the database.
+   * Returns the date-time stamp recorded when a complete resource is first written to the database.
    *
    * @return creation timestamp.
    */
   Date getCreated();
 
   /**
-   *
+   *Returns points from the complete resource.
    *
    * @return points
    */
   int getPoints();
-  
+
 
   /**
-   * Returns a URL referencing the source resource.
+   * Returns a URL referencing the complete resource.
    *
-   * @return source URL.
+   * @return complete URL.
    */
   URI getHref();
 }

@@ -20,7 +20,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
- * Main class of the QoD application. All of the work of application startup is performed (directly
+ * Main class of the Samurai Server application. All of the work of application startup is performed (directly
  * or indirectly) by the {@link SpringApplication} class, which initiates the process of
  * discovery/reflection to instantiate the components required by a Spring Data/Spring MVC
  * application.
@@ -30,9 +30,9 @@ public class SamuraiServerApplication {
 
   @Value("${oauth.clientId}")
   private String clientId;
-
+//is QoD referenced anywhere
   /**
-   * Main entry point for the QoD Spring Boot application. Any command line arguments will be
+   * Main entry point for the Samurai Server Spring Boot application. Any command line arguments will be
    * forwarded to {@link SpringApplication#run(Class, String...)}.
    *
    * @param args command line arguments.

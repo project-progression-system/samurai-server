@@ -21,14 +21,14 @@ import java.util.Date;
 import java.util.UUID;
 
 /**
- * Declares the getters (and thus the JSON properties) of a source for serialization, excluding
+ * Declares the getters (as well as JSON properties) of a source for serialization, excluding
  * references to other objects that could result in stack or buffer overflow on serialization.
  */
 public interface FlatUser {
   /**
-   * Returns the universally unique ID (UUID) of a source resource.
+   * Returns the universally unique ID (UUID) of a user resource.
    *
-   * @return quote UUID.
+   * @return assignment UUID.
    */
   UUID getId();
 
@@ -40,20 +40,31 @@ public interface FlatUser {
   Date getCreated();
 
   /**
-   * Returns the name of the source.
+   * Returns the name of the user.
    *
-   * @return source name.
+   * @return source user.
    */
   String getName();
 
+  /**
+   * Returns the current level.
+   *
+   * @return source level.
+   */
   int getLevel();
 
+
+  /**
+   * Returns the type of user.
+   *
+   * @return source type.
+   */
   User.Type getType();
 
   /**
-   * Returns a URL referencing the source resource.
+   * Returns a URL referencing the user resource.
    *
-   * @return source URL.
+   * @return user URL.
    */
   URI getHref();
 }
