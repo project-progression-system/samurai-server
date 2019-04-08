@@ -2,7 +2,7 @@
 + Provides a server that can store a class rooms User information based on teacher and students. It also saves assignment names with
  corresponding points earned for each student as well as teacher it was assigned from. 
 
-#Testing 
+# Testing 
 +
 
 # Technical Documentation
