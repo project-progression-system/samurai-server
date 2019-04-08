@@ -5,7 +5,7 @@
 #Testing 
 +
 
-# technical documentation
+# Technical Documentation
 + [ERD](https://github.com/project-progression-system/samurai-server/blob/master/BackEndForTitan.pdf)
 + [Javadoc](docs/api/)
 + [Spring Boot](https://github.com/spring-projects/spring-boot/blob/master/LICENSE.txt)
