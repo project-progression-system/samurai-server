@@ -6,6 +6,6 @@
 +
 
 # technical documentation
-+ [ERD](https://github.com/project-progression-system/project_titan_client/blob/master/Back-end%20and%20Front-end%20for%20Project%20Titan.pdf)
++ [ERD](https://github.com/project-progression-system/samurai-server/blob/master/BackEndForTitan.pdf)
 + [Javadoc](docs/api/)
 + [Spring Boot](https://github.com/spring-projects/spring-boot/blob/master/LICENSE.txt)
