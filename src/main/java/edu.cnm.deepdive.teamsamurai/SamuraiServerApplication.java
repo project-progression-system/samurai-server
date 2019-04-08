@@ -56,8 +56,8 @@ public class SamuraiServerApplication extends ResourceServerConfigurerAdapter {
 
   @Override
   public void configure(HttpSecurity http) throws Exception {
-    http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);//looks at this evertime we make a request
-    http.authorizeRequests().anyRequest().permitAll(); //TODO set role based security and set up apps for team. hasRole("USER");
+    http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);//looks at this every time we make a request
+    http.authorizeRequests().anyRequest().hasRole("USER"); //permitAll() to turn the access level to any.
   }
 
 }
