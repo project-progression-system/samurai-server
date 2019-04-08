@@ -1,0 +1,6 @@
+edu.cnm.deepdive.teamsamurai
+edu.cnm.deepdive.teamsamurai.controller
+edu.cnm.deepdive.teamsamurai.model.dao
+edu.cnm.deepdive.teamsamurai.model.entity
+edu.cnm.deepdive.teamsamurai.service
+edu.cnm.deepdive.teamsamurai.view
