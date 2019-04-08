@@ -53,10 +53,12 @@ public class CompleteController {
   private UserRepository userRepository;
 
   /**
-   * Initializes this instance, injecting an instance of {@link CompleteRepository} as well as {@link AssigmentRepository}
+   * Initializes this instance, injecting an instance of {@link CompleteRepository} {@link AssigmentRepository}
+   * as well as {@link UserRepository}
    *
    * @param completeRepository repository used for operations on {@link Complete} entity instances.
    * @param assignmentRepository repository used for operations on {@link Assignment} entity instances.
+   * @param userRepository repository used for operations on {@link User} entity instances.
    */
   @Autowired
   public CompleteController(CompleteRepository completeRepository,
@@ -67,9 +69,9 @@ public class CompleteController {
   }
 
   /**
-   * Returns a sequence of all the {@link Assignment} resources in the database.
+   * Returns a sequence of all the {@link Complete} resources in the database.
    *
-   * @return sequence of {@link Assignment} resources.
+   * @return sequence of {@link Complete} resources.
    */
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   public Iterable<Complete> get() {

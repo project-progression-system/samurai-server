@@ -15,12 +15,23 @@
  */
 package edu.cnm.deepdive.teamsamurai.model.dao;
 
+import edu.cnm.deepdive.teamsamurai.model.entity.Assignment;
 import edu.cnm.deepdive.teamsamurai.model.entity.Complete;
 import java.util.UUID;
 import org.springframework.data.repository.CrudRepository;
 
+/**
+ * Declares database operations that can be performed on {@link Complete} entity instances.
+ */
 public interface CompleteRepository extends CrudRepository<Complete, UUID> {
 
+  /**
+   * Selects and returns all {@link Complete} instances containing the specified student fragment, in
+   * alphabetical order.
+   *
+   * @param student fragment filter text content.
+   * @return all students.
+   */
   Iterable<Complete> findAllByStudentOrderByCreatedDesc(String student);
 
 }

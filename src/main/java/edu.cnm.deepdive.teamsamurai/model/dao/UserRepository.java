@@ -33,9 +33,12 @@ public interface UserRepository extends CrudRepository<User, UUID> {
    */
   List<User> findAllByOrderByNameAsc();
 
+
   /**
    * Selects and returns all {@link User} instances, sorted by id creation.
    *
+   * @param type type of user
+   * @param id Optional {@link User}
    * @return {@link Optional} sequence of {@link User} instances.
    */
   Optional<User> findFirstByIdAndType(UUID id, User.Type type);

@@ -96,7 +96,7 @@ public class Assignment implements FlatAssignment {
   }
 
   /**
-   * Sets the name of this <code>AssigmentName</code> instance.
+   * Sets the name of this <code>Assigment</code> instance.
    *
    * @param name quote source name.
    */
@@ -105,7 +105,9 @@ public class Assignment implements FlatAssignment {
   }
 
   /**
-   * @return
+   * returns a value of this <code>Assignment</code> instance.
+   *
+   * @return value set.
    */
   @Override
   public int getValue() {
@@ -113,21 +115,27 @@ public class Assignment implements FlatAssignment {
   }
 
   /**
-   * @param value
+   * Sets the value of this <code>Assigment</code> instance.
+   *
+   * @param value worth.
    */
   public void setValue(int value) {
     this.value = value;
   }
 
   /**
-   * @return
+   * returns a teacher {@link User} of this <code>Assignment</code> instance.
+   *
+   * @return teacher {@link User}.
    */
   public User getTeacher() {
     return teacher;
   }
 
   /**
-   * @param teacher
+   * sets a teacher {@link User} of this <code>Assignment</code> instance.
+   *
+   * @param teacher {@link User}.
    */
   public void setTeacher(User teacher) {
     this.teacher = teacher;

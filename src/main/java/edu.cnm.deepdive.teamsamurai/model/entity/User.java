@@ -99,18 +99,18 @@ public class User implements FlatUser {
   }
 
   /**
+   * returns the subject of this <code>User</code> instance.
    *
-   *
-   * @return
+   * @return subject
    */
   public String getSubject() {
     return subject;
   }
 
   /**
+   * sets the subject of this <code>User</code> instance.
    *
-   *
-   * @param subject
+   * @param subject source subject
    */
   public void setSubject(String subject) {
     this.subject = subject;
@@ -122,9 +122,9 @@ public class User implements FlatUser {
   }
 
   /**
+   * sets the name of the student of this <code>User</code> instance.
    *
-   *
-   * @param name
+   * @param name of student
    */
   public void setName(String name) {
     this.name = name;
@@ -136,9 +136,9 @@ public class User implements FlatUser {
   }
 
   /**
-   * sets the level of the student
+   * sets the level of the student.
    *
-   * @param level int will return a int value representing a level
+   * @param level int will return a int value representing a level.
    */
   public void setLevel(int level) {
     this.level = level;
@@ -147,7 +147,7 @@ public class User implements FlatUser {
   /**
    * gets a list of assignments
    *
-   * @return assigment
+   * @return assigment.
    */
   public List<Assignment> getAssignments() {
     return assignments;

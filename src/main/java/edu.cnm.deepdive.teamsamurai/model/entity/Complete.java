@@ -90,16 +90,19 @@ public class Complete implements FlatComplete {
   }
 
   /**
-   * @param created
+   * returns a student user instance
+   *
+   * @return student user.
    */
-  public void setCreated(Date created) {
-    this.created = created;
-  }
-
   public User getStudent() {
     return student;
   }
 
+  /**
+   * Sets the student user of this <code>Complete</code> instance.
+   *
+   * @param student complete user student instance
+   */
   public void setStudent(User student) {
     this.student = student;
   }
@@ -110,21 +113,27 @@ public class Complete implements FlatComplete {
   }
 
   /**
-   * @param points
+   * Sets the points of this <code>Complete</code> instance.
+   *
+   * @param points complete instance
    */
   public void setPoints(int points) {
     this.points = points;
   }
 
   /**
-   * @return
+   * returns an Assignment
+   *
+   * @return assignment
    */
   public Assignment getAssignment() {
     return assignment;
   }
 
   /**
-   * @param assignment
+   * Sets the assignment of this <code>Complete</code> instance.
+   *
+   * @param assignment complete instance.
    */
   public void setAssignment(Assignment assignment) {
     this.assignment = assignment;

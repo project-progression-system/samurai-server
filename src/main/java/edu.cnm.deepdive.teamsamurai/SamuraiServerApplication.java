@@ -39,7 +39,6 @@ public class SamuraiServerApplication extends ResourceServerConfigurerAdapter {
 
   @Value("${oauth.clientId}")
   private String clientId;
-//is QoD referenced anywhere
   /**
    * Main entry point for the Samurai Server Spring Boot application. Any command line arguments will be
    * forwarded to {@link SpringApplication#run(Class, String...)}.

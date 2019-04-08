@@ -41,5 +41,11 @@ public interface AssigmentRepository extends CrudRepository<Assignment, UUID> {
    */
   Iterable<Assignment> findAllByNameContainingOrderByNameAsc(String fragment);
 
+  /**
+   * Selects and returns all {@link Assignment} instances for a given {@link User} to an assigned teacher, sorted in Selects and returns all {@link Assignment} instances, sorted in alphabetical order. order.
+   *
+   * @param teacher determins user signature
+   * @return {@link Iterable} sequence of {@link Assignment} instances.
+   */
   Iterable<Assignment> findAllByTeacherOrderByCreatedDesc(User teacher);
 }

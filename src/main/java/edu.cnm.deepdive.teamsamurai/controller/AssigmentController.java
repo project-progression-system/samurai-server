@@ -56,7 +56,10 @@ public class AssigmentController {
    * {@link UserRepository}.
    *
    * @param assigmentRepository repository used for operations on {@link Assignment} entity instances.
+   * @param userRepository repository used for operations on {@link User} entity instances.
    */
+
+
   @Autowired
   public AssigmentController(AssigmentRepository assigmentRepository, UserRepository userRepository) {
     this.assigmentRepository = assigmentRepository;
