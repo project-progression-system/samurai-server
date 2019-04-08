@@ -23,7 +23,7 @@ import java.util.UUID;
  * Declares the getters (as well as JSON properties) of a source for serialization, excluding
  * references to other objects that could result in stack or buffer overflow on serialization.
  */
-public interface FlatAssigment {
+public interface FlatAssignment {
   /**
    * Returns the universally unique ID (UUID) of a assignment resource.
    *

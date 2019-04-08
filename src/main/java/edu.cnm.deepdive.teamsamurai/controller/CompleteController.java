@@ -17,8 +17,11 @@ package edu.cnm.deepdive.teamsamurai.controller;
 
 import edu.cnm.deepdive.teamsamurai.model.dao.AssigmentRepository;
 import edu.cnm.deepdive.teamsamurai.model.dao.CompleteRepository;
+import edu.cnm.deepdive.teamsamurai.model.dao.UserRepository;
 import edu.cnm.deepdive.teamsamurai.model.entity.Assignment;
 import edu.cnm.deepdive.teamsamurai.model.entity.Complete;
+import edu.cnm.deepdive.teamsamurai.model.entity.User;
+import edu.cnm.deepdive.teamsamurai.model.entity.User.Type;
 import java.util.NoSuchElementException;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,11 +45,12 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @ExposesResourceFor(Complete.class)
-@RequestMapping("/complete")
+@RequestMapping("/completions")
 public class CompleteController {
 
   private CompleteRepository completeRepository;
   private AssigmentRepository assignmentRepository;
+  private UserRepository userRepository;
 
   /**
    * Initializes this instance, injecting an instance of {@link CompleteRepository} as well as {@link AssigmentRepository}
@@ -56,9 +60,10 @@ public class CompleteController {
    */
   @Autowired
   public CompleteController(CompleteRepository completeRepository,
-      AssigmentRepository assignmentRepository) {
+      AssigmentRepository assignmentRepository, UserRepository userRepository) {
     this.completeRepository = completeRepository;
     this.assignmentRepository = assignmentRepository;
+    this.userRepository = userRepository;
   }
 
   /**
@@ -83,6 +88,10 @@ public class CompleteController {
       consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
   @ResponseStatus(value = HttpStatus.CREATED)
   public ResponseEntity<Complete> post(@RequestBody Complete complete) {
+    User student = userRepository.findFirstByIdAndType(complete.getStudent().getId(), Type.STUDENT).get();
+    Assignment assignment = assignmentRepository.findById(complete.getAssignment().getId()).get();
+    complete.setAssignment(assignment);
+    complete.setStudent(student);
     completeRepository.save(complete);
     return ResponseEntity.created(complete.getHref()).body(complete);
   }
@@ -95,7 +104,7 @@ public class CompleteController {
    * @param assignmentId {@link UUID} of {@link Assignment} to be associated with referenced {@link Complete}.
    * @return updated {@link Complete} resource.
    */
-  @PutMapping(value = "{completeId}/sources/{assignmentId}", produces = MediaType.APPLICATION_JSON_VALUE)
+  @PutMapping(value = "{completeId}/assignment/{assignmentId}", produces = MediaType.APPLICATION_JSON_VALUE)
   public Complete attach(@PathVariable("completeId") UUID completeId, @PathVariable("assignmentId") UUID assignmentId) {
     Assignment assignment = assignmentRepository.findById(assignmentId).get();
     Complete complete = completeRepository.findById(completeId).get();
@@ -103,6 +112,7 @@ public class CompleteController {
     completeRepository.save(complete);
     return complete;
   }
+
 
   /**
    * Maps (via annotation) a {@link NoSuchElementException} to a response status code of {@link

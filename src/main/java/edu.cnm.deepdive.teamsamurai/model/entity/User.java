@@ -17,7 +17,7 @@ package edu.cnm.deepdive.teamsamurai.model.entity;
 
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import edu.cnm.deepdive.teamsamurai.view.FlatAssigment;
+import edu.cnm.deepdive.teamsamurai.view.FlatAssignment;
 import edu.cnm.deepdive.teamsamurai.view.FlatUser;
 import java.net.URI;
 import java.util.Date;
@@ -78,7 +78,7 @@ public class User implements FlatUser {
   @Column(nullable = false)
   private Type type;
 
-  @JsonSerialize(contentAs = FlatAssigment.class)
+  @JsonSerialize(contentAs = FlatAssignment.class)
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "teacher")
   @OrderBy("created DESC")
   private List<Assignment> assignments = new LinkedList<>();

@@ -15,12 +15,17 @@
  */
 package edu.cnm.deepdive.teamsamurai.model.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import edu.cnm.deepdive.teamsamurai.view.FlatAssignment;
 import edu.cnm.deepdive.teamsamurai.view.FlatComplete;
+import edu.cnm.deepdive.teamsamurai.view.FlatUser;
 import java.net.URI;
 import java.util.Date;
 import java.util.UUID;
+import javax.annotation.PostConstruct;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -29,6 +34,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityLinks;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
@@ -46,7 +54,7 @@ public class Complete implements FlatComplete {
   @Id
   @GeneratedValue(generator = "uuid2")
   @GenericGenerator(name = "uuid2", strategy = "uuid2")
-  @Column(name = "assignment_id", columnDefinition = "CHAR(16) FOR BIT DATA",
+  @Column(name = "completion_id", columnDefinition = "CHAR(16) FOR BIT DATA",
       nullable = false, updatable = false)
   private UUID id;
 
@@ -56,34 +64,20 @@ public class Complete implements FlatComplete {
   @Column(nullable = false, updatable = false)
   private Date created;
 
-  @NonNull
-  @Column(length = 1024, nullable = false, unique = true)
-  private String student;
+  @JsonSerialize(as = FlatUser.class)
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "student_id", updatable = false, nullable = false)
+  @OnDelete(action = OnDeleteAction.CASCADE)
+  private User student;
 
   @Column
   private int points;
 
-  @ManyToOne
-  @JoinColumn(name = "user_id")
-  private User user;
-
+  @JsonSerialize(as = FlatAssignment.class)
   @ManyToOne
   @JoinColumn(name = "assignment_id", insertable = false, updatable = false)
+  @OnDelete(action = OnDeleteAction.CASCADE)
   private Assignment assignment;
-
-  /**
-   * @return
-   */
-  public static EntityLinks getEntityLinks() {
-    return entityLinks;
-  }
-
-  /**
-   * @param entityLinks
-   */
-  public static void setEntityLinks(EntityLinks entityLinks) {
-    Complete.entityLinks = entityLinks;
-  }
 
   @Override
   public UUID getId() {
@@ -102,17 +96,11 @@ public class Complete implements FlatComplete {
     this.created = created;
   }
 
-  /**
-   * @return
-   */
-  public String getStudent() {
+  public User getStudent() {
     return student;
   }
 
-  /**
-   * @param student
-   */
-  public void setStudent(String student) {
+  public void setStudent(User student) {
     this.student = student;
   }
 
@@ -126,20 +114,6 @@ public class Complete implements FlatComplete {
    */
   public void setPoints(int points) {
     this.points = points;
-  }
-
-  /**
-   * @return
-   */
-  public User getUser() {
-    return user;
-  }
-
-  /**
-   * @param user
-   */
-  public void setUser(User user) {
-    this.user = user;
   }
 
   /**
@@ -160,4 +134,15 @@ public class Complete implements FlatComplete {
   public URI getHref() {
     return entityLinks.linkForSingleResource(Complete.class, id).toUri();
   }
+
+  @PostConstruct
+  private void init() {
+    String ignore = entityLinks.toString(); // Deliberately ignored.
+  }
+
+  @Autowired
+  private void setEntityLinks(EntityLinks entityLinks) {
+    Complete.entityLinks = entityLinks;
+  }
+
 }

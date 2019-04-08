@@ -17,7 +17,7 @@ package edu.cnm.deepdive.teamsamurai.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import edu.cnm.deepdive.teamsamurai.view.FlatAssigment;
+import edu.cnm.deepdive.teamsamurai.view.FlatAssignment;
 import edu.cnm.deepdive.teamsamurai.view.FlatUser;
 import java.net.URI;
 import java.util.Date;
@@ -50,7 +50,7 @@ import org.springframework.stereotype.Component;
 @Component
 @JsonIgnoreProperties(
     value = {"created", "users", "href"}, allowGetters = true, ignoreUnknown = true)
-public class Assignment implements FlatAssigment {
+public class Assignment implements FlatAssignment {
 
   private static EntityLinks entityLinks;
 
