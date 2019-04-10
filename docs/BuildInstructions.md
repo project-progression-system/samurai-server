@@ -31,7 +31,7 @@
 
 ### Any server configuration needed.
 ##### In Order for the server to work in conjunction with our app you need to do the following to prepopulate the data base with at least 1 assignment.
-######Base Url: http://samuraiserver-env.r9pnamsd2a.us-east-2.elasticbeanstalk.com/rest/titan/
+###### Base Url: http://samuraiserver-env.r9pnamsd2a.us-east-2.elasticbeanstalk.com/rest/titan/
 
 + use the teacher.json file as a reference to prepopulate a teacher user, using the base url under /users
 
