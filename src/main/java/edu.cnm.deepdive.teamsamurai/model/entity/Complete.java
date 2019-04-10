@@ -75,7 +75,7 @@ public class Complete implements FlatComplete {
 
   @JsonSerialize(as = FlatAssignment.class)
   @ManyToOne
-  @JoinColumn(name = "assignment_id", insertable = false, updatable = false)
+  @JoinColumn(name = "assignment_id", nullable = false, updatable = false)
   @OnDelete(action = OnDeleteAction.CASCADE)
   private Assignment assignment;
 

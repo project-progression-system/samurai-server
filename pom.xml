@@ -12,9 +12,9 @@
   </parent>
 
   <groupId>edu.cnm.deepdive</groupId>
-  <artifactId>qod</artifactId>
+  <artifactId>samurai</artifactId>
   <version>1.0.0-SNAPSHOT</version>
-  <name>Quote of the Day Service</name>
+  <name>Samurai Server</name>
   <description>Quote of the Day Spring Boot application</description>
 
   <properties>

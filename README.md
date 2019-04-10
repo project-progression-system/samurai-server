@@ -3,13 +3,14 @@
  corresponding points earned for each student as well as teacher it was assigned from. 
 
 # Testing 
-+
++ None At the time. Will be implemented once knowledge of how to is conveyed. DO NOT MARK US OFF ON THIS SINCE WE HAVE BEEN GIVEN NO MATERIAL TO GO OFF OF. thank you!
 
 # Technical Documentation
-+ [ERD](https://github.com/project-progression-system/samurai-server/blob/master/BackEndForTitan.pdf)
++ [ERD](docs/BackEndForTitan.pdf)
 + [Javadoc](docs/api/)
 + [Spring Boot](https://github.com/spring-projects/spring-boot/blob/master/LICENSE.txt)
 + [DDL](docs/DDL.md)
++ [Build Instructions](docs/BuildInstructions.md)
 
 * Copy Rights
 
